@@ -20,6 +20,11 @@ public interface EtatsRepository extends JpaRepository<EtatsMission, Long> {
     
     @Modifying
     @Transactional
+    @Query( "UPDATE EtatsMission e SET e.etatRemboursement = ?1 WHERE e.idmission= ?2 and e.typemissionnaire= ?3 " )
+    public void validerRemb( String etatRemboursement, Long id, String type );
+    
+    @Modifying
+    @Transactional
     @Query( "UPDATE EtatsMission e SET e.etat = ?1 WHERE e.idEtats= ?2 " )   
     public void AnnulerMission( String etat, Long id );
     
@@ -43,6 +48,12 @@ public interface EtatsRepository extends JpaRepository<EtatsMission, Long> {
     
     @Query( "SELECT e from EtatsMission e where e.idmission=:x and e.etat=:y" )
     public EtatsMission chercherEtatMissions( @Param( "x" ) Long id, @Param( "y" ) String etat );
+    
+    @Query( "SELECT e from EtatsMission e where e.idmission=:x and e.etatRemboursement=:y" )
+    public EtatsMission chercherEtatRemb( @Param( "x" ) Long id, @Param( "y" ) String etatRemb );
+    
+    @Query( "SELECT e from EtatsMission e where e.idmission=:x and e.etat=:y and e.typemissionnaire=:z" )
+    public EtatsMission chercherEtatMissions( @Param( "x" ) Long id, @Param( "y" ) String etat, @Param( "z" ) String type );
 
     @Query( "SELECT etat from EtatsMission e where e.idmission=:x" )
     public String chercherMission( @Param( "x" ) Long id );

@@ -102,11 +102,12 @@ public class Mission implements Serializable {
         // TODO Auto-generated constructor stub
     }
 
-    public Mission( Boolean ordreRemboursement, Date dateDemande, String typeDestination, String destination, String pays,
+    public Mission( Boolean ordreRemboursement, Date dateDemande, String typeMission, String typeDestination, String destination, String pays,
             Date dateDepart, Date dateArrive, String objetDeplacement, Boolean demandeAvance ) {
         super();
         this.ordreRemboursement = ordreRemboursement;
         this.dateDemande = dateDemande;
+        this.typeMission = typeMission;
         this.destination = destination;
         this.typeDestination = typeDestination;
         this.pays = pays;

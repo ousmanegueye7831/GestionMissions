@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.opendevup.entities.EtatsMission;
 import com.opendevup.entities.Mission;
+import com.opendevup.entities.Missionnaire;
 import com.opendevup.metier.DepenseMetier;
 import com.opendevup.metier.DeplacementMetier;
 import com.opendevup.metier.MissionMetier;
@@ -38,6 +40,28 @@ public class RemboursementService {
 	public MultipleDeplacementDepense listeRemb(@RequestBody Mission m) {
 		return remboursementMetier.listeRemb(m);
 	}
+	@RequestMapping( value = "/Remboursement/valide", method = RequestMethod.POST )
+	public Boolean validerRemboursement(@RequestBody EtatsMission e) {
+		return remboursementMetier.validerRemboursement(e);
+	}
+	@RequestMapping( value = "/Remboursement/listMissionRemb", method = RequestMethod.POST )
+	public List<Mission> listMissionRem(@RequestBody Missionnaire ms) {
+		return remboursementMetier.listMissionRem(ms);
+	}
+	
+	@RequestMapping( value = "/Remboursement/valid/{id}", method = RequestMethod.GET )
+	public List<Mission> chercherRembValider(@PathVariable( "id" ) Long id) {
+		return remboursementMetier.chercherRembValider(id);
+	}
+	
+	@RequestMapping( value = "/Remboursement/refus/{id}", method = RequestMethod.GET )
+	public List<Mission> chercherRembRefuser(@PathVariable( "id" ) Long id) {
+		return remboursementMetier.chercherRembRefuser(id);
+	}
+	
+	
+	
+	
 	
 	
  

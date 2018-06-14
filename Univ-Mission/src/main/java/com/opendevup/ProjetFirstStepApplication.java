@@ -153,7 +153,7 @@ public class ProjetFirstStepApplication implements CommandLineRunner {
         notificationRepository.save( ntf );
         notificationRepository.save( ntf2 );*/
         //
-        Mission ms = new Mission( true, formatter.parse( "2018/02/23" ), "UE", "Belfort", "France",
+        Mission ms = new Mission( true, formatter.parse( "2018/02/23" ),"Mission Pédagogique", "UE", "Belfort", "France",
             formatter.parse( "2018/02/25" ), formatter.parse( "2018/03/31" ), "Mission Pédagogique", true );
         // Mission ms2 = new Mission( true, formatter.parse( "2018/04/23" ),
         // "Paris", "France",
@@ -170,10 +170,10 @@ public class ProjetFirstStepApplication implements CommandLineRunner {
        missionRepository.save( ms );
         // missionRepository.save( ms2 );
         //
-      //  etatsRepository.save( new EtatsMission( ms.getIdMission(), "en cours", "GestionnaireSTGI" ) );
-        /*etatsRepository.save( new EtatsMission( ms.getIdMission(), "", "ResponsableMM" ) );
-        etatsRepository.save( new EtatsMission( ms.getIdMission(), "", "DirecteurMM" ) );
-        etatsRepository.save( new EtatsMission( ms.getIdMission(), "", "DirecteurMM" ) );*/
+       	etatsRepository.save( new EtatsMission( ms.getIdMission(), "validée", "GestionnaireSTGI" ) );
+        etatsRepository.save( new EtatsMission( ms.getIdMission(), "validée", "ResponsableMM" ) );
+       // etatsRepository.save( new EtatsMission( ms.getIdMission(), "valide", "DirecteurSTGI" ) );
+       // etatsRepository.save( new EtatsMission( ms.getIdMission(), "", "DirecteurMM" ) );
         //
         // etatsRepository.save( new EtatsMission( ms2.getIdMission(), "en
         // cours", "Gestionnaire" ) );

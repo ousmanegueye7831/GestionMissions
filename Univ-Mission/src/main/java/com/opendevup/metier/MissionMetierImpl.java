@@ -499,8 +499,66 @@ public class MissionMetierImpl implements MissionMetier{
 	@Override
 	public List<Mission> chercherMissionARembourser(Long id) {
 		// TODO Auto-generated method stub
-		List<Mission> listMissionValide = listeMissionValider(id);
-		return listMissionValide;
+		List<Mission> missions = new ArrayList<Mission>();
+		EtatsMission etatV = new EtatsMission();
+		EtatsMission etatR = new EtatsMission();
+		Missionnaire ms = missionnaireRepository.findOne(id);
+		if(ms.getDepartement().equals("Multimedia")) {
+
+    		for(int i=0; i<missionRepository.chercherMission(ms).size(); i++) {
+				
+    				etatV= etatsRepository.chercherEtatMissions(missionRepository.chercherMission(ms).get(i).getIdMission(), "validée", "GestionnaireSTGI");
+    				etatR= etatsRepository.chercherEtatMissions(missionRepository.chercherMission(ms).get(i).getIdMission(), "refusée", "GestionnaireSTGI");
+    				
+    				if (etatV!= null) {
+    					System.out.println("dfdgddff"+ etatV.getEtatRemboursement());
+	    				if(missionRepository.chercherMission(ms).get(i).getOrdreRemboursement() && etatV.getEtatRemboursement()==null ) {    		    				
+	    					//etats.add(etat);
+	    					missions.add( missionRepository.findOne( etatV.getIdmission() ) );
+	    				
+	    				}
+    				}
+    				if (etatR !=null) {
+    					if(missionRepository.chercherMission(ms).get(i).getOrdreRemboursement() && etatR.getEtatRemboursement()==null ) {    		    				
+	    					//etats.add(etat);
+	    					missions.add( missionRepository.findOne( etatR.getIdmission() ) );
+	    				
+	    				
+    				}					
+				
+    				}
+	    				
+    		}			    					
+		}
+	
+		if(ms.getDepartement().equals("MMI")) {
+
+    		for(int i=0; i<missionRepository.chercherMission(ms).size(); i++) {
+				
+    				etatV= etatsRepository.chercherEtatMissions(missionRepository.chercherMission(ms).get(i).getIdMission(), "validée", "GestionnaireIUT");
+    				etatR= etatsRepository.chercherEtatMissions(missionRepository.chercherMission(ms).get(i).getIdMission(), "refusée", "GestionnaireIUT");
+    				
+    				if (etatV!= null) {
+    					System.out.println("dfdgddff"+ etatV.getEtatRemboursement());
+	    				if(missionRepository.chercherMission(ms).get(i).getOrdreRemboursement() && etatV.getEtatRemboursement()==null ) {    		    				
+	    					//etats.add(etat);
+	    					missions.add( missionRepository.findOne( etatV.getIdmission() ) );
+	    				
+	    				}
+    				}
+    				if (etatR !=null) {
+    					if(missionRepository.chercherMission(ms).get(i).getOrdreRemboursement() && etatR.getEtatRemboursement()==null ) {    		    				
+	    					//etats.add(etat);
+	    					missions.add( missionRepository.findOne( etatR.getIdmission() ) );
+	    				
+	    				
+    				}					
+				
+    				}
+	    				
+    		}			    					
+		}
+		return missions;
 	}
 
 
